@@ -38,7 +38,7 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 10px 0; /* For mobile version */
 }
 
 /* Thin out the marketing headings */
@@ -54,6 +54,9 @@ body {
 -------------------------------------------------- */
 
 @media (min-width: 768px) {
+  .featurette-divider {
+    margin: 80px 0; /* For laptop version */
+  }
 
   .featurette-heading {
     font-size: 50px;
