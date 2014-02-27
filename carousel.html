@@ -1,27 +1,32 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="favicon.ico">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='description' content='>
+    <meta name='author' content='>
+    <link rel='shortcut icon' href='favicon.ico'>
 
     <title>Carousel Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='css/bootstrap.min.css' rel='stylesheet'>
 
     <!-- Custom styles for this template -->
-    <link href="mycarousel.css" rel="stylesheet">
+    <link href='mycarousel.css' rel='stylesheet'>
 
-    <style type="text/css">
+    <style type='text/css'>
+
+    svg.template {
+      display: none;
+    }
+
     /*
         http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
     */
-    svg {
+    svg.game {
         max-height: 100%; 
     }
     </style>
@@ -33,74 +38,80 @@
 ================================================== -->
   <body>
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <!-- Remember to include class ='img-responsive game' when instantiating. -->
+    <svg class='template' xmlns='http://www.w3.org/2000/svg' version='1.1' viewbox='0 0 108 108'>
+      <defs>
+          <pattern id='img1' patternUnits='userSpaceOnUse' width='108' height='108'>
+            <image xlink:href='retina_wood.png' x='0' y='0' width='108' height='108' />
+          </pattern>
+          <pattern id='grid' x='6' y='6' patternUnits='userSpaceOnUse' width='12' height='12'>
+            <rect stroke='black' strock-width='1' fill='none' x='0' y ='0' width='12' height='12'/>
+          </pattern>
+          <pattern id='vline' x='6' y='6' patternUnits='userSpaceOnUse' width='12' height='108'>
+            <rect stroke='black' strock-width='0.5' fill='none' x='-1' y ='0' width='1' height='108'/>
+          </pattern>
+          <pattern id='hline' x='6' y='6' patternUnits='userSpaceOnUse' width='108' height='12'>
+            <rect stroke='black' strock-width='0.5' fill='none' x='0' y ='-1' width='108' height='1'/>
+          </pattern>
+      </defs>
+      
+      <g class='board'>
+        <rect  fill='url(#img1)' x='0' y='0' width='108' height='108'/>
+        <rect  fill='url(#vline)' stroke='black' x='6' y='6' width='96' height='96'/>
+        <rect  fill='url(#hline)' stroke='black' x='6' y='6' width='96' height='96'/>
+      </g>
 
-    <div class="container marketing">
+      <g class='stones'></g>
+
+      <g class='screen'>
+        <rect  fill='black' x='0' y='0' width='108' height='108' opacity='0.5'/>
+          <!-- center (54,54) w/2 = 20  h/2 = 20 -->
+        <g transform='translate(34,34)'>
+          <circle fill='rgb(0, 173, 239)' cx='20' cy='20' r='15'/>
+          <g transform='scale(0.7) translate(12,10)'>
+            <path fill='none' stroke='#ffffff' d='M6.684,25.682L24.316,15.5L6.684,5.318V25.682Z' stroke-width='3' stroke-linejoin='round' opacity='0' transform='matrix(1,0,0,1,4,4)' style='-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-linejoin: round; opacity: 0;'></path>
+            <path fill='white' stroke='none' d='M6.684,25.682L24.316,15.5L6.684,5.318V25.682Z' transform='matrix(1,0,0,1,4,4)' opacity='1' fill-opacity='1' style='-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1; fill-opacity: 1;'></path>
+          </g>
+        </g>
+      </g>
+
+    </svg>
+
+
+    <!-- Real page start here. -->
+
+    <div class='container marketing'>
 
       <!-- START THE FEATURETTES -->
 
-      <hr class="featurette-divider">
+      <hr class='featurette-divider'>
 
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      <div class='row featurette'>
+        <div class='col-md-7'>
+          <h2 class='featurette-heading'>First featurette heading. <span class='text-muted'>It'll blow your mind.</span></h2>
+          <p class='lead'>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
-        <div class="col-md-5">
-          <svg class="img-responsive board" xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 108 108">
-            <defs>
-              <defs>
-                <pattern id="img1" patternUnits="userSpaceOnUse" width="108" height="108">
-                  <image xlink:href="retina_wood.png" x="0" y="0" width="108" height="108" />
-                </pattern>
-                <pattern id="grid" x="6" y="6" patternUnits="userSpaceOnUse" width="12" height="12">
-                  <rect stroke="black" strock-width="1" fill="none" x="0" y ="0" width="12" height="12"/>
-                </pattern>
-                <pattern id="vline" x="6" y="6" patternUnits="userSpaceOnUse" width="12" height="108">
-                  <rect stroke="black" strock-width="0.5" fill="none" x="-1" y ="0" width="1" height="108"/>
-                </pattern>
-                <pattern id="hline" x="6" y="6" patternUnits="userSpaceOnUse" width="108" height="12">
-                  <rect stroke="black" strock-width="0.5" fill="none" x="0" y ="-1" width="108" height="1"/>
-                </pattern>
-              </defs>
-
-            </defs>
-            
-            <g class="wood">
-              <rect  fill="url(#img1)" x="0" y="0" width="108" height="108"/>
-              <rect  fill="url(#vline)" stroke="black" x="6" y="6" width="96" height="96"/>
-              <rect  fill="url(#hline)" stroke="black" x="6" y="6" width="96" height="96"/>
-            </g>
-
-            <g class="stone"></g>
-
-            <g class="screen">
-              <rect  fill="black" x="0" y="0" width="108" height="108" opacity="0.5"/>
-                <!-- center (54,54) w/2 = 20  h/2 = 20 -->
-              <g transform="translate(34,34)">
-                <circle fill="rgb(0, 173, 239)" cx="20" cy="20" r="15"/>
-                <g transform="scale(0.7) translate(12,10)">
-                  <path fill="none" stroke="#ffffff" d="M6.684,25.682L24.316,15.5L6.684,5.318V25.682Z" stroke-width="3" stroke-linejoin="round" opacity="0" transform="matrix(1,0,0,1,4,4)" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-linejoin: round; opacity: 0;"></path>
-                  <path fill="white" stroke="none" d="M6.684,25.682L24.316,15.5L6.684,5.318V25.682Z" transform="matrix(1,0,0,1,4,4)" opacity="1" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1; fill-opacity: 1;"></path>
-                </g>
-              </g>
-            </g>
-
-          </svg>
-        </div>
+        <div class='col-md-5 gameContainer' game-id='atari1'></div>
       </div>
 
 
-      <hr class="featurette-divider">
+      <hr class='featurette-divider'>
+
+      <div class='row featurette'>
+        <div class='col-md-5 gameContainer' game-id='atari1'></div>
+        <div class='col-md-7'>
+           <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>        </div>
+      </div>
+
+      <hr class='featurette-divider'>      
       <!-- /END THE FEATURETTES -->
 
 
       <!-- FOOTER -->
       <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; Charn Pruksapha &middot; <a href="mailto:arabbig@gmail.com">Email</a></p>
+        <p class='pull-right'><a href='#'>Back to top</a></p>
+        <p>&copy; Charn Pruksapha &middot; <a href='mailto:arabbig@gmail.com'>Email</a></p>
       </footer>
 
     </div><!-- /.container -->
@@ -109,35 +120,127 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="docs.min.js"></script>
-    <script src="d3.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script src='docs.min.js'></script>
+    <script src='d3.min.js'></script>
+    <script src='async.js'></script>
 
     <script> 
 
-    var boardNum = 2;
-    var boardStates = $.map($(Array(boardNum)),function(val, i) { return true; }); // true = idle, false = play
 
     $(function(){
 
+        /*
+          Initialize gameSVG
+        */
+        $('svg.template')
+          .clone()
+          .attr('class','game')
+          .appendTo('.gameContainer')
+          .each(function (){
 
-        d3.selectAll(".board").data(boardStates).on("click", function(d,i){
-          var isIdle = d; // check if the current board is playing or not ?
-          var board = d3.select(this);
-          if(isIdle) {
-            play(board, i)
-          } else {
-            // do nothing, already playing
-          }
-          board.datum(!isIdle);
-        })
+            var path = $(this).parent().attr('game-id');
+            var gameSVG = d3.select(this);
 
-        function play(board) {
+            $.getJSON( path + '.json' , function(snapShots) {
 
-          board.select(".screen").transition().style('opacity',0)
+              /*
+                Data join key = cross product of stone position
+              */
+              function key(d) {
+                return d.x*1000 + d.y*1000;
+              }
 
-        }
+              //////////////////////////////////////////////
+              // This part define game view and animation //
+              //////////////////////////////////////////////
+
+              /* 
+                Initial view
+              */
+              if(snapShots[0].op != 'initial') {
+                throw new UserException("Invalid Snapshots !");
+              } else {
+                gameSVG.select('.stones')
+                  .selectAll('circle')
+                  .data(snapShots[0].pos, key)
+                  .enter()
+                  .append('circle')
+                  .attr('cx', function(d){return d.x})
+                  .attr('cy', function(d){return d.y})
+                  .attr('r', 5.5)
+                  .attr('fill', function(d){return d.color});
+              }
+
+              /*
+                Animation
+              */
+              function play(){
+
+                // gameSVG, snapShots are assumed
+
+                var currentShot = d3.set();
+                
+                $.each(snapShots, function(i, val){
+                  //console.log(val.op);
+                });
+
+                async.series([ start, animate, stop], function(err, results){
+                  console.log(results.join('|'));
+                });
+
+                function start(callback) {
+                  gameSVG.select('.screen').transition().style('opacity',0);
+                  setTimeout(function(){ callback(null, 'screenFadeOut');}, 500);
+                  console.log(5);
+                }
+
+                function animate(callback) {
+                  setTimeout(function(){ callback(null, 'Animate');}, 500);
+
+                }
+
+                function stop(callback) {
+                  gameSVG.select('.screen').transition().style('opacity',1);
+                  gameSVG.datum({playing:false});
+                  callback(null, 'screenFadeIn');
+                }
+
+              }
+
+              ///////////////////////////////////////////
+              // The rest define interacion with users //
+              ///////////////////////////////////////////
+
+              /* 
+                Associated boolean indicate playing or idle
+              */
+              gameSVG.datum({
+                playing : false,
+              });
+
+              gameSVG.on('click', function(d,i){
+
+                var playing  = gameSVG.datum().playing;
+                //console.log(playing);
+
+                if(playing) {
+                  // do nothing, already playing
+                } else { 
+                  // Switch the state
+                  gameSVG.datum({playing:true}) ;
+                  play();
+
+                }
+
+              });
+
+
+            });
+
+          });
+
     });
 
 
