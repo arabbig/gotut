@@ -15,7 +15,7 @@
     <link href='css/bootstrap.min.css' rel='stylesheet'>
 
     <!-- Custom styles for this template -->
-    <link href='mycarousel.css' rel='stylesheet'>
+    <link href='carousel.css' rel='stylesheet'>
 
     <style type='text/css'>
 
@@ -149,7 +149,45 @@
                 Data join key = cross product of stone position
               */
               function key(d) {
-                return d.x*1000 + d.y*1000;
+                return d.x*1000 + d.y;
+              }
+
+              function redraw(stones, op){
+
+
+                var circles = gameSVG.select('.stones')
+                  .selectAll('circle')
+                  .data(stones, key);
+                  
+                switch(op) {
+                  case 'initial': //exit.remove enter
+                      circles.exit()
+                        .transition()
+                        .duration(500)
+                        .attr('opacity', 0)
+                        .remove();
+                  case 'add-incr': //enter
+                  case 'add-bulk': //enter
+                      circles.enter()
+                        .append('circle')
+                        .attr('cx', function(d){return d.x})
+                        .attr('cy', function(d){return d.y})
+                        .attr('r', 5.5)
+                        .attr('fill', function(d){return d.color})
+                        .attr('opacity', 0)
+                        .transition()
+                        .duration(500)
+                        .attr('opacity', 1);                 
+                        break;
+                  case 'remove': //exit red remove
+                      circles.exit()
+                        .attr('fill','red')
+                        .transition()
+                        .duration(500)
+                        .attr('opacity', 0)
+                        .remove();
+                }
+
               }
 
               //////////////////////////////////////////////
@@ -162,49 +200,68 @@
               if(snapShots[0].op != 'initial') {
                 throw new UserException("Invalid Snapshots !");
               } else {
-                gameSVG.select('.stones')
-                  .selectAll('circle')
-                  .data(snapShots[0].pos, key)
-                  .enter()
-                  .append('circle')
-                  .attr('cx', function(d){return d.x})
-                  .attr('cy', function(d){return d.y})
-                  .attr('r', 5.5)
-                  .attr('fill', function(d){return d.color});
+                redraw(snapShots[0].stones, snapShots[0].op);
               }
 
               /*
-                Animation
+                Animation play
               */
               function play(){
 
                 // gameSVG, snapShots are assumed
 
-                var currentShot = d3.set();
+                var currentShot = [];
+                var animateQueue = [];
+
+                function addSnapshot(stones, op, delay){
+                  animateQueue.push(function(callback) {        
+                      setTimeout(function(){ 
+                        redraw(stones, op);
+                        callback(null, 'Animate');
+                      }, delay);
+                  });
+                }
                 
-                $.each(snapShots, function(i, val){
-                  //console.log(val.op);
+                // double loop
+                $.each(snapShots, function(i, v){
+                  $.each(v.stones, function(ii, vv){
+
+                    if(v.op == 'remove') {
+                      currentShot = $.grep(currentShot, function(vvv, iii){
+                        return (vvv.x != vv.x) || (vvv.y != vv.y) ;
+                      });
+                    }
+                    else currentShot.push(vv) ; // all kind of add
+
+                    // v.op=add-incr --> incremental, so add one snapshot immediately after push
+                    if(v.op == 'add-incr') addSnapshot(currentShot.slice(0), 'add-incr', 1000); 
+                    /* Note  slice(0) performs shallow copy */
+
+                  });
+                    // remove and the rest are bulk operations
+                    if(v.op == 'remove') addSnapshot(currentShot.slice(0), 'remove', 250); 
+                    else if(v.op == 'add-bulk') addSnapshot(currentShot.slice(0), 'add-bulk', 1000);
+                    else ;// vop=initial operation do nothing
                 });
 
-                async.series([ start, animate, stop], function(err, results){
+                async.series([start].concat(animateQueue.concat([stop])), function(err, results){
                   console.log(results.join('|'));
                 });
 
                 function start(callback) {
                   gameSVG.select('.screen').transition().style('opacity',0);
-                  setTimeout(function(){ callback(null, 'screenFadeOut');}, 500);
-                  console.log(5);
-                }
-
-                function animate(callback) {
-                  setTimeout(function(){ callback(null, 'Animate');}, 500);
-
+                  callback(null, 'screenFadeOut');
                 }
 
                 function stop(callback) {
-                  gameSVG.select('.screen').transition().style('opacity',1);
-                  gameSVG.datum({playing:false});
-                  callback(null, 'screenFadeIn');
+                  setTimeout(function(){
+                    /* Reinitialize initial view again */
+                    gameSVG.select('.screen').transition().style('opacity',1);
+                    gameSVG.datum({playing:false});
+                    redraw(snapShots[0].stones,snapShots[0].op);
+                    callback(null, 'screenFadeIn');
+                  }, 1000);
+
                 }
 
               }

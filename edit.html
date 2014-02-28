@@ -136,12 +136,12 @@
 
       var snapShot = [
           {
-            op: "add-bulk", 
-            data : [{"stone":"black","x":54,"y":54},{"stone":"black","x":6,"y":6},{"stone":"black","x":102,"y":54}]
+            op: "initial", 
+            data : [{"color":"black","x":54,"y":54},{"color":"black","x":6,"y":6},{"color":"black","x":102,"y":54}]
           },
           {
             op: "add-incr",
-            data :  [{"stone":"white","x":54,"y":42},{"stone":"white","x":66,"y":54},{"stone":"white","x":54,"y":66},{"stone":"white","x":42,"y":54}]
+            data :  [{"color":"white","x":54,"y":42},{"color":"white","x":66,"y":54},{"color":"white","x":54,"y":66},{"color":"white","x":42,"y":54}]
           }, 
           {
             op:"remove",
@@ -149,15 +149,15 @@
           },
           {
             op:"add-incr",
-            data : [{"stone":"white","x":6,"y":18},{"stone":"white","x":18,"y":6}]
+            data : [{"color":"white","x":6,"y":18},{"color":"white","x":18,"y":6}]
           },
           {
             op:"remove",
-            data : [{"stone":"black","x":6,"y":6}]
+            data : [{"color":"black","x":6,"y":6}]
           },
           {
             op:"add-incr",
-            data : [{"stone":"white","x":102,"y":42},{"stone":"white","x":90,"y":54},{"stone":"white","x":102,"y":66}]
+            data : [{"color":"white","x":102,"y":42},{"color":"white","x":90,"y":54},{"color":"white","x":102,"y":66}]
           },
           {
             op:"remove",
