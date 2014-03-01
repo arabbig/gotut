@@ -24,7 +24,7 @@
     }
 
     /*
-        http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
+      Credit: http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
     */
     svg.game {
       max-height: 100%; 
@@ -84,12 +84,12 @@
 
       <!-- START THE FEATURETTES -->
 
-      <hr class='featurette-divider'>
+      <hr class='featurette-divider' style="margin-top:0;">
 
       <div class='row featurette'>
-        <div class='col-md-7'>
-          <h2 class='featurette-heading'>First featurette heading. <span class='text-muted'>It'll blow your mind.</span></h2>
-          <p class='lead'>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class='col-md-7 textContainer'>
+          <h2 class='featurette-heading'> กฎข้อที่ห้า <span class='text-muted'></br>การจับหมากกิน</span></h2>
+          <p class='lead'>"กฎข้อที่ห้า"ของการเล่นหมากล้อมระบุว่า หมากหรือกลุ่มหมากสีเดียวกันถือว่าถูกจับกิน และจะต้องเก็บออกไปจากกระดานทันที ต่อเมื่อจุดที่ประชิดโดยรอบ มันถูกหมากคู่ต่อสู้ยึดครองไปทั้งหมด (การหมดอิสระภาพ)</p>
         </div>
         <div class='col-md-5 gameContainer' game-id='atari1'></div>
       </div>
@@ -97,19 +97,19 @@
       <hr class='featurette-divider'>
 
       <div class="row featurette">
-        <div class='col-md-5 gameContainer' game-id='atari2'></div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="col-md-7 textContainer">
+          <h2 class="featurette-heading"><span class="text-muted">สถานการณ์จริง</span></h2-->
+          <p class="lead">ในสถานการจริงนั้น คงไม่มีฝ่ายใดยอมให้หมากของตนเองถูกจับหมากกินโดยง่าย "การต่อหมาก"สีดำที่กลางกระดาน ทำให้หมากขาวไม่สามารถยึดครองจุดประชิดรอบตัวมัน เช่นเดียวกันกับเหตุการณ์ที่เกิดขึ้นที่มุมซ้ายบน และด้านขวาของกระดาน</p>
         </div>
+        <div class='col-md-5 gameContainer' game-id='atari2'></div>
       </div>
 
       <hr class='featurette-divider'>
 
       <div class='row featurette'>
-        <div class='col-md-7'>
-           <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>        
+        <div class='col-md-7 textContainer'>
+           <h2 class="featurette-heading"><span class="text-muted">ต่อมา</span></h2>
+            <p class="lead">กลุ่มหมากสีดำที่กลางกระดาน เป็นตัวอย่างกลุ่มหมากที่สามารถหนีพ้นการจับกินโดยหมากขาว ในทางกลับกันกลุ่มหมากสีขาวทางตอนซ้ายบนของกระดานไม่สามารถเอาตัวรอดได้ เช่นเดียวกันกับกลุ่มหมากดำทางด้านขวาของกระดานซึ่งถูกหมากสีขาวต้อนไปจนกระทั่งมุมกระดานและจับกิน</p>        
         </div>
         <div class='col-md-5 gameContainer' game-id='atari3'></div>
       </div>
@@ -117,14 +117,14 @@
       <hr class='featurette-divider'> 
 
       <div class="row featurette">
-        <div class='col-md-5 gameContainer' game-id='atari4'></div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="col-md-7 textContainer">
+          <h2 class="featurette-heading"><span class="text-muted">หนีไม่รอด</span></h2>
+          <p class="lead">ตัวอย่างหลายแบบของหมากซึ่งไม่สามารถหนีรอดการไล่ล่าจับกินได้ ถ้าหากว่าฝ่ายที่พยายามจับกินเป็นฝ่ายเริ่มเล่นหมากก่อน</p>
         </div>
+        <div class='col-md-5 gameContainer' game-id='atari4'></div>
       </div>
 
-      <hr class='featurette-divider'>
+      <hr class='featurette-divider' style="margin-bottom:0;">
       <!-- /END THE FEATURETTES -->
 
 
@@ -151,6 +151,17 @@
 
     $(function(){
 
+        if (document.documentElement.clientWidth > 992) {
+          // scripts
+          console.log('swap');
+          $(".row").each(function(i){
+            var game = $(this).find('.gameContainer');
+            var text = $(this).find('.textContainer');
+            if(i%2) game.insertBefore(text);
+          });
+        }
+
+
         /*
           Initialize gameSVG
         */
@@ -172,15 +183,15 @@
                 return d.x*1000 + d.y;
               }
 
-              function redraw(stones, op){
+              function redraw(stones, pattern){
 
 
                 var circles = gameSVG.select('.stones')
                   .selectAll('circle')
                   .data(stones, key);
                   
-                switch(op) {
-                  case 'initial': //exit.remove enter
+                switch(pattern) {
+                  case 'ext-ent': //exit.remove enter
                       circles.exit()
                         .transition()
                         .duration(500)
@@ -189,10 +200,11 @@
                       circles
                         .transition()
                         .duration(500)
-                        .attr('fill', function(d){return d.color});
+                        .attr('fill', function(d){return d.color})
+                        .attr('opacity', 1);
 
-                  case 'add-incr': //enter
-                  case 'add-bulk': //enter
+                  case 'ent': //enter
+                  //case 'add-bulk': //enter
                       circles.enter()
                         .append('circle')
                         .attr('cx', function(d){return d.x})
@@ -204,7 +216,7 @@
                         .duration(500)
                         .attr('opacity', 1);                 
                         break;
-                  case 'remove': //exit red remove
+                  case 'ext': //exit red remove
                       circles.exit()
                         .attr('fill','red')
                         .transition()
@@ -225,7 +237,7 @@
               if(snapShots[0].op != 'initial') {
                 throw new UserException("Invalid Snapshots !");
               } else {
-                redraw(snapShots[0].stones, snapShots[0].op);
+                redraw(snapShots[0].stones, 'ent');
               }
 
               /*
@@ -246,10 +258,10 @@
                   });
                 }
 
-                function addSnapshot(stones, op, delay){
+                function addSnapshot(stones, pattern, delay){
                   animateQueue.push(function(callback) {        
                       setTimeout(function(){ 
-                        redraw(stones, op);
+                        redraw(stones, pattern);
                         callback(null, 'Animate');
                       }, delay);
                   });
@@ -267,21 +279,23 @@
                     else {
                       if(v.op == 'add-bulk' && ii == 0) {
                         currentShot = [];
-                        addSnapshot(currentShot.slice(0), 'initial', 1000);
-                        pauseAnimation(1000);
+                        addSnapshot(currentShot.slice(0), 'ext-ent', 2000); // 2 sec before refresh game
                       }
                       currentShot.push(vv) ; // all kind of add
                     }
 
                     // v.op=add-incr --> incremental, so add one snapshot immediately after push
-                    if(v.op == 'add-incr') addSnapshot(currentShot.slice(0), 'add-incr', 1000); 
+                    if(v.op == 'add-incr') addSnapshot(currentShot.slice(0), 'ent', 1000); 
                     /* Note  slice(0) performs shallow copy */
 
                   });
                     // remove and the rest are bulk operations
-                    if(v.op == 'remove') addSnapshot(currentShot.slice(0), 'remove', 250); 
-                    else if(v.op == 'add-bulk') addSnapshot(currentShot.slice(0), 'add-bulk', 1000);
-                    else ;// vop=initial operation do nothing
+                    if(v.op == 'remove') addSnapshot(currentShot.slice(0), 'ext', 500); 
+                    else if(v.op == 'add-bulk' || v.op == 'initial') { 
+                      addSnapshot(currentShot.slice(0), 'ext-ent', 0); // 0.5 sec before add new stones
+                      pauseAnimation(1000); // wait 1 sec for the user to get ready
+                    }
+
                 });
 
                 async.series([start].concat(animateQueue.concat([stop])), function(err, results){
@@ -290,7 +304,6 @@
 
                 function start(callback) {
                   gameSVG.select('.screen').transition().style('opacity',0);
-                  redraw(snapShots[0].stones,snapShots[0].op);
                   callback(null, 'screenFadeOut');
                 }
 
