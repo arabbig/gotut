@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+
+    <style type="text/css">
+    /*
+        http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
+    */
+    svg {
+        max-height: 100%; 
+    }
+    </style>
+
+
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <svg class="img-responsive board" xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 108 108">
+            <defs>
+              <defs>
+                <pattern id="img1" patternUnits="userSpaceOnUse" width="108" height="108">
+                  <image xlink:href="retina_wood.png" x="0" y="0" width="108" height="108" />
+                </pattern>
+                <pattern id="grid" x="6" y="6" patternUnits="userSpaceOnUse" width="12" height="12">
+                  <rect stroke="black" strock-width="1" fill="none" x="0" y ="0" width="12" height="12"/>
+                </pattern>
+                <pattern id="vline" x="6" y="6" patternUnits="userSpaceOnUse" width="12" height="108">
+                  <rect stroke="black" strock-width="0.5" fill="none" x="-1" y ="0" width="1" height="108"/>
+                </pattern>
+                <pattern id="hline" x="6" y="6" patternUnits="userSpaceOnUse" width="108" height="12">
+                  <rect stroke="black" strock-width="0.5" fill="none" x="0" y ="-1" width="108" height="1"/>
+                </pattern>
+              </defs>
+
+            </defs>
+            
+            <g class="wood">
+              <rect  fill="url(#img1)" x="0" y="0" width="108" height="108"/>
+              <rect  fill="url(#vline)" stroke="black" x="6" y="6" width="96" height="96"/>
+              <rect  fill="url(#hline)" stroke="black" x="6" y="6" width="96" height="96"/>
+            </g>
+
+          </svg>
+        </div>
+      </div>
+
+
+      <hr class="featurette-divider">
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; Charn Pruksapha &middot; <a href="mailto:arabbig@gmail.com">Email</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="docs.min.js"></script>
+    <script src="d3.min.js"></script>
+
+    <script> 
+
+    var stColor = "black";
+    var collect = [];
+
+    function reset() {
+      collect = []
+    }
+
+    function recolor(){
+      stColor = stColor == 'white' ? "black" : "white" ; 
+    }
+
+    function print(a){
+      console.log(JSON.stringify(a));
+    }
+
+    function printWhite(a){
+      print($.grep(a,function(v,i){return v.color=='white';}))
+    }
+
+    function printBlack(a){
+      print($.grep(a,function(v,i){return v.color=='black';}))
+    }
+
+    $(function(){
+
+
+      var board = d3.select(".board"); 
+      
+      /* 
+        Use to collect stone move 
+      */
+      board.on("click",function(d,i){
+          var point = d3.mouse(this);
+
+          var x_  = Math.round((point[0] - 6) / 12) * 12  + 6;
+          var y_ = Math.round((point[1] - 6) / 12)  * 12 + 6;
+
+
+          d3.select(this).append("svg:circle").attr("cx",x_).attr("cy",y_).attr("r",5.5).style("fill",stColor);
+          collect.push({color:stColor,x:x_,y:y_});
+
+      });
+
+
+      /*
+        Obtained from 
+        1. Set collect = []
+        2. Set color + Click
+        3. JSON.stringify(collect)
+        4. Structure the object manually
+      */
+
+      var snapShot = [
+          {
+            op: "initial", 
+            data : [{"color":"black","x":54,"y":54},{"color":"black","x":6,"y":6},{"color":"black","x":102,"y":54}]
+          },
+          {
+            op: "add-incr",
+            data :  [{"color":"white","x":54,"y":42},{"color":"white","x":66,"y":54},{"color":"white","x":54,"y":66},{"color":"white","x":42,"y":54}]
+          }, 
+          {
+            op:"remove",
+            data : [{"x":54,"y":54}]
+          },
+          {
+            op:"add-incr",
+            data : [{"color":"white","x":6,"y":18},{"color":"white","x":18,"y":6}]
+          },
+          {
+            op:"remove",
+            data : [{"color":"black","x":6,"y":6}]
+          },
+          {
+            op:"add-incr",
+            data : [{"color":"white","x":102,"y":42},{"color":"white","x":90,"y":54},{"color":"white","x":102,"y":66}]
+          },
+          {
+            op:"remove",
+            data : [{"x":102,"y":54}]
+          }
+      ];
+
+        
+    });
+    </script>
+
+  </body>
+</html>

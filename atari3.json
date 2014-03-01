@@ -1,0 +1,31 @@
+    [
+          {
+            "op": "initial", 
+            "stones" : [{"color":"black","x":54,"y":54},{"color":"white","x":6,"y":6},{"color":"black","x":102,"y":54},{"color":"white","x":54,"y":42},{"color":"white","x":66,"y":54},{"color":"white","x":54,"y":66},{"color":"black","x":42,"y":54},{"color":"black","x":6,"y":18},{"color":"white","x":18,"y":6},{"color":"white","x":102,"y":42},{"color":"white","x":90,"y":54},{"color":"black","x":102,"y":66}]
+          },
+          {
+            "op": "add-incr",
+            "stones" :  [{"color":"white","x":42,"y":42},{"color":"black","x":30,"y":66}]
+          }, 
+
+
+          {
+            "op":"add-incr",
+            "stones" : [{"color":"black","x":18,"y":18},{"color":"white","x":30,"y":6},{"color":"black","x":42,"y":18},{"color":"white","x":42,"y":6},{"color":"black","x":54,"y":6},{"color":"white","x":30,"y":18},{"color":"black","x":30,"y":30}]
+          },
+          {
+            "op":"remove",
+            "stones" : [{"color":"white","x":6,"y":6},{"color":"white","x":18,"y":6},{"color":"white","x":30,"y":6},{"color":"white","x":42,"y":6},{"color":"white","x":30,"y":18}] 
+          },
+
+
+          {
+            "op":"add-incr",
+            "stones" : [{"color":"white","x":90,"y":66},{"color":"black","x":102,"y":78},{"color":"white","x":90,"y":78},{"color":"black","x":102,"y":90},{"color":"white","x":90,"y":90},{"color":"black","x":102,"y":102},{"color":"white","x":90,"y":102}]
+          },
+          {
+            "op":"remove",
+            "stones" : [{"color":"black","x":102,"y":54},{"color":"black","x":102,"y":66},{"color":"black","x":102,"y":78},{"color":"black","x":102,"y":90},{"color":"black","x":102,"y":102}]
+          }
+      ]
+
