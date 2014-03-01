@@ -15,7 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="mycarousel.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
 
     <style type="text/css">
     /*
@@ -105,6 +105,26 @@
     var stColor = "black";
     var collect = [];
 
+    function reset() {
+      collect = []
+    }
+
+    function recolor(){
+      stColor = stColor == 'white' ? "black" : "white" ; 
+    }
+
+    function print(a){
+      console.log(JSON.stringify(a));
+    }
+
+    function printWhite(a){
+      print($.grep(a,function(v,i){return v.color=='white';}))
+    }
+
+    function printBlack(a){
+      print($.grep(a,function(v,i){return v.color=='black';}))
+    }
+
     $(function(){
 
 
@@ -121,7 +141,7 @@
 
 
           d3.select(this).append("svg:circle").attr("cx",x_).attr("cy",y_).attr("r",5.5).style("fill",stColor);
-          collect.push({stone:stColor,x:x_,y:y_});
+          collect.push({color:stColor,x:x_,y:y_});
 
       });
 
